@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 
 import { APIRoute, FetchStatus, NameSpace } from '../../utils/const';
@@ -8,11 +8,17 @@ import { User } from '../../types/users';
 interface InitialState {
   users: User[];
   usersStatus: FetchStatus;
+
+  user: User | null;
+  userStatus: FetchStatus;
 }
 
 const initialState: InitialState = {
   users: [],
   usersStatus: FetchStatus.Idle,
+
+  user: null,
+  userStatus: FetchStatus.Idle,
 };
 
 export const fetchUsers = createAsyncThunk<
@@ -32,21 +38,48 @@ export const fetchUsers = createAsyncThunk<
   }
 });
 
+export const fetchUser = createAsyncThunk<
+  User,
+  number,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('data/fetchUser', async (id: number, { dispatch, extra: api }) => {
+  try {
+    const { data } = await api.get<User>(`${APIRoute.Users}/${id}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+});
+
 export const usersSlice = createSlice({
   name: NameSpace.Users,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsers.pending, (state, action) => {
+      .addCase(fetchUsers.pending, (state) => {
         state.usersStatus = FetchStatus.Pending;
       })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(fetchUsers.fulfilled, (state, action: PayloadAction<User[]>) => {
         state.users = action.payload;
         state.usersStatus = FetchStatus.Fulfilled;
       })
-      .addCase(fetchUsers.rejected, (state, action) => {
+      .addCase(fetchUsers.rejected, (state) => {
         state.usersStatus = FetchStatus.Rejected;
+      })
+      .addCase(fetchUser.pending, (state) => {
+        state.userStatus = FetchStatus.Pending;
+      })
+      .addCase(fetchUser.fulfilled, (state, action: PayloadAction<User>) => {
+        state.user = action.payload;
+        state.userStatus = FetchStatus.Fulfilled;
+      })
+      .addCase(fetchUser.rejected, (state) => {
+        state.userStatus = FetchStatus.Rejected;
       });
   },
 });
@@ -54,3 +87,4 @@ export const usersSlice = createSlice({
 const selectUsersState = (state: State) => state[NameSpace.Users];
 
 export const selectUsers = (state: State) => selectUsersState(state).users;
+export const selectUser = (state: State) => selectUsersState(state).user;

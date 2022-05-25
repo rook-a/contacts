@@ -6,6 +6,7 @@ export const enum NameSpace {
 
 export const enum AppRoute {
   Root = '/',
+  User = '/user',
   NotFound = '*',
 }
 

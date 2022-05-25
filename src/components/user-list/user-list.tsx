@@ -1,5 +1,7 @@
+import { Fragment } from 'react';
 import { useAppSelector } from '../../hooks/hooks';
 import { selectUsers } from '../../store/users-slice/users-slice';
+import UserItem from '../user-item/user-item';
 
 import styles from './user-list.module.css';
 
@@ -9,12 +11,9 @@ function UserList(): JSX.Element {
   return (
     <ul className={styles['user-list']}>
       {users.map(({ name, id }) => (
-        <li className={styles['user-item']} key={id}>
-          <p className={styles['user-name']}>{name}</p>
-          <a className={styles['user-link']} href="/">
-            show more
-          </a>
-        </li>
+        <Fragment key={id}>
+          <UserItem name={name} id={id} />
+        </Fragment>
       ))}
     </ul>
   );
