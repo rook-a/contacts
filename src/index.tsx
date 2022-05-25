@@ -1,13 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './components/app/app';
+import { Provider } from 'react-redux';
+import { createRoot } from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+import App from './components/app/app';
+
+import HistoryRouter from './components/history-route/history-route';
+import { browserHistory } from './browser-history';
+import { store } from './store/store';
+import { fetchUsers } from './store/users-slice/users-slice';
+
+import './index.css';
+
+store.dispatch(fetchUsers());
+
+const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <HistoryRouter history={browserHistory}>
+        <App />
+      </HistoryRouter>
+    </Provider>
   </React.StrictMode>,
 );
 

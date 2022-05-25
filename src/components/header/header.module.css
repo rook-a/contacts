@@ -1,0 +1,12 @@
+.header {
+  height: 100px;
+  font-size: 28px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #000000;
+
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+}
