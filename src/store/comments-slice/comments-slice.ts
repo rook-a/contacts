@@ -3,16 +3,20 @@ import { AxiosInstance } from 'axios';
 
 import { APIRoute, FetchStatus, NameSpace } from '../../utils/const';
 import { AppDispatch, State } from '../../types/state';
-import { Comment } from '../../types/comment';
+import { Comment, NewComment } from '../../types/comment';
 
 interface InitialState {
   comments: Comment[];
   commentsStatus: FetchStatus;
+
+  sendNewCommentStatus: FetchStatus;
 }
 
 const initialState: InitialState = {
   comments: [],
   commentsStatus: FetchStatus.Idle,
+
+  sendNewCommentStatus: FetchStatus.Idle,
 };
 
 export const fetchComments = createAsyncThunk<
@@ -26,6 +30,28 @@ export const fetchComments = createAsyncThunk<
 >('data/fetchComments', async (postId: number, { dispatch, extra: api }) => {
   try {
     const { data } = await api.get<Comment[]>(`${APIRoute.Posts}/${postId}${APIRoute.Comments}`);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+});
+
+export const sendNewComment = createAsyncThunk<
+  NewComment,
+  NewComment,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('data/sendNewComment', async ({ postId, name, email, body }: NewComment, { dispatch, extra: api }) => {
+  try {
+    const { data } = await api.post<NewComment>(`${APIRoute.Posts}/${postId}${APIRoute.Comments}`, {
+      postId,
+      name,
+      email,
+      body,
+    });
     return data;
   } catch (error) {
     throw error;
@@ -47,6 +73,15 @@ export const commentsSlice = createSlice({
       })
       .addCase(fetchComments.rejected, (state) => {
         state.commentsStatus = FetchStatus.Rejected;
+      })
+      .addCase(sendNewComment.pending, (state) => {
+        state.sendNewCommentStatus = FetchStatus.Pending;
+      })
+      .addCase(sendNewComment.fulfilled, (state) => {
+        state.sendNewCommentStatus = FetchStatus.Fulfilled;
+      })
+      .addCase(sendNewComment.rejected, (state) => {
+        state.sendNewCommentStatus = FetchStatus.Rejected;
       });
   },
 });

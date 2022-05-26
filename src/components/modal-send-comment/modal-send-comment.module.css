@@ -1,0 +1,106 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+
+  width: 300px;
+
+  background-color: #ffffff;
+
+  padding-top: 40px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+
+  width: 20px;
+  height: 20px;
+
+  cursor: pointer;
+
+  border: none;
+  background-color: transparent;
+}
+
+.close-button::after,
+.close-button::before {
+  content: '';
+  top: 8px;
+  left: 0;
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #000000;
+}
+
+.close-button::before {
+  transform: rotate(45deg);
+}
+
+.close-button::after {
+  transform: rotate(-45deg);
+}
+
+.form-label {
+  display: inline-block;
+  align-self: flex-start;
+
+  position: relative;
+
+  font-size: 14px;
+
+  margin-bottom: 5px;
+}
+
+.form-label::before {
+  position: absolute;
+  content: '*';
+  top: -5px;
+  right: -10px;
+  font-size: 12px;
+  color: #ff0000;
+}
+
+.form-input {
+  outline: none;
+  border: 1px solid #dadada;
+
+  padding-top: 5px;
+  padding-right: 8px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  margin-bottom: 20px;
+}
+
+.form-input:focus {
+  border: 1px solid #000000;
+}
+
+.form-textarea {
+  resize: none;
+  font-family: inherit;
+
+  margin-bottom: 40px;
+}
+
+.form-button {
+  color: #ffffff;
+  background-color: #000000;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.form-button:hover,
+.form-button:focus {
+  border: 1px solid #000000;
+  color: #000000;
+  background-color: #ffffff;
+  transition: all 0.3s linear;
+}
