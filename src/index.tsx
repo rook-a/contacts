@@ -8,11 +8,8 @@ import App from './components/app/app';
 import HistoryRouter from './components/history-route/history-route';
 import { browserHistory } from './browser-history';
 import { store } from './store/store';
-import { fetchUsers } from './store/users-slice/users-slice';
 
 import './index.css';
-
-store.dispatch(fetchUsers());
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(

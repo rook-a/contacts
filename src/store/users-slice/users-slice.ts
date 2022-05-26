@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 
 import { APIRoute, FetchStatus, NameSpace } from '../../utils/const';
 import { AppDispatch, State } from '../../types/state';
-import { User } from '../../types/users';
+import { User } from '../../types/user';
 
 interface InitialState {
   users: User[];

@@ -1,0 +1,32 @@
+.posts-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 70px;
+  margin-left: 0;
+}
+
+.posts-item {
+  border: 1px solid #dadada;
+
+  padding: 25px;
+}
+
+.posts-title {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.posts-body {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  margin: 0;
+}

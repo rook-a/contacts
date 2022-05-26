@@ -12,10 +12,10 @@ function Header(): JSX.Element {
           Logo
         </Link>
         <div>
-          <a href="/" className={styles['link']}>
+          <a href="/" className={`button ${styles['link']}`}>
             Версия для сабовидящих
           </a>
-          <a href="/" className={styles['link']}>
+          <a href="/" className={`button ${styles['link']}`}>
             Мой профиль
           </a>
         </div>

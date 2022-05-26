@@ -1,3 +1,5 @@
+export const MAX_COUNT_POSTS = 3;
+
 export const enum NameSpace {
   App = 'App',
   Users = 'Users',

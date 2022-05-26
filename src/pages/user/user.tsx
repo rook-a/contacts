@@ -1,19 +1,24 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { generatePath, Link, useParams } from 'react-router-dom';
+import PostsPreviewList from '../../components/posts-preview-list/posts-preview-list';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { fetchUserPosts } from '../../store/posts-slice/posts-slice';
 import { fetchUser, selectUser } from '../../store/users-slice/users-slice';
 
 import styles from './user.module.css';
 
 function User(): JSX.Element | null {
   const { id } = useParams();
+  const link = generatePath('/user/:id/posts', { id });
   const dispatch = useAppDispatch();
+
   const user = useAppSelector(selectUser);
 
   const selectUserId = Number(id);
 
   useEffect(() => {
     dispatch(fetchUser(selectUserId));
+    dispatch(fetchUserPosts(selectUserId));
   }, [dispatch, selectUserId]);
 
   if (!user) {
@@ -40,6 +45,12 @@ function User(): JSX.Element | null {
 
       <div className={styles['posts']}>
         <h2 className={styles['title']}>Posts</h2>
+
+        <PostsPreviewList />
+
+        <Link className={`button ${styles['posts-link']}`} to={link}>
+          Show all
+        </Link>
       </div>
     </main>
   );
