@@ -1,0 +1,23 @@
+.comments-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 70px;
+  margin-left: 0;
+}
+
+.comments-item {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #dadada;
+}
+
+.comments-item:last-child {
+  margin-bottom: 0;
+  border: none;
+}
+
+.comments-item p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}

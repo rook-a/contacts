@@ -8,13 +8,6 @@
   margin-bottom: 50px;
 }
 
-.title {
-  text-align: center;
-  text-transform: uppercase;
-  margin-top: 0;
-  margin-bottom: 50px;
-}
-
 .user-info {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

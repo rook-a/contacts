@@ -1,0 +1,37 @@
+.posts-item {
+  position: relative;
+  border: 1px solid #dadada;
+
+  padding: 25px;
+}
+
+.posts-title {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
+.posts-body {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  margin: 0;
+}
+
+.posts-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  text-align: center;
+  color: #ffffff;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.posts-item .posts-link:hover {
+  border: 1px solid #000000;
+}

@@ -1,0 +1,24 @@
+.post-title::first-letter,
+.post-body::first-letter {
+  text-transform: uppercase;
+}
+
+.post-title {
+  margin-top: 0;
+  margin-bottom: 50px;
+}
+
+.post-body {
+  margin-top: 0;
+  margin-bottom: 100px;
+}
+
+.post-button {
+  display: block;
+  width: 250px;
+  margin: 0 auto;
+  cursor: pointer;
+  border: none;
+  color: #ffffff;
+  background-color: #000000;
+}

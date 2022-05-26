@@ -13,10 +13,7 @@ function Header(): JSX.Element {
         </Link>
         <div>
           <a href="/" className={`button ${styles['link']}`}>
-            Версия для сабовидящих
-          </a>
-          <a href="/" className={`button ${styles['link']}`}>
-            Мой профиль
+            Profile
           </a>
         </div>
       </div>

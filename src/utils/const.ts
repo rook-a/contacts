@@ -4,17 +4,20 @@ export const enum NameSpace {
   App = 'App',
   Users = 'Users',
   Posts = 'Posts',
+  Comments = 'Comments',
 }
 
 export const enum AppRoute {
   Root = '/',
   User = '/user',
+  Posts = '/posts',
   NotFound = '*',
 }
 
 export const enum APIRoute {
   Users = '/users',
   Posts = '/posts',
+  Comments = '/comments',
 }
 
 export enum FetchStatus {
