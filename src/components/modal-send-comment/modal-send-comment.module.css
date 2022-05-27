@@ -82,11 +82,36 @@
   border: 1px solid #000000;
 }
 
+.form-input__error {
+  border: 1px solid #ff0000;
+  margin-bottom: 0;
+}
+
+.form-input__error:focus {
+  border: 1px solid #ff0000;
+}
+
 .form-textarea {
   resize: none;
   font-family: inherit;
 
   margin-bottom: 40px;
+}
+
+.form-textarea--error {
+  margin-bottom: 0;
+}
+
+.form-error__message {
+  font-size: 10px;
+  color: #ff0000;
+
+  margin-top: 3px;
+  margin-bottom: 6px;
+}
+
+.form-error__message--textarea {
+  margin-bottom: 26px;
 }
 
 .form-button {
@@ -99,7 +124,7 @@
 
 .form-button:hover,
 .form-button:focus {
-  border: 1px solid #000000;
+  outline: 1px solid #000000;
   color: #000000;
   background-color: #ffffff;
   transition: all 0.3s linear;

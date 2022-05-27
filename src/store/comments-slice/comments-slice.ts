@@ -52,6 +52,7 @@ export const sendNewComment = createAsyncThunk<
       email,
       body,
     });
+
     return data;
   } catch (error) {
     throw error;
@@ -61,7 +62,11 @@ export const sendNewComment = createAsyncThunk<
 export const commentsSlice = createSlice({
   name: NameSpace.Comments,
   initialState,
-  reducers: {},
+  reducers: {
+    resetSendCommentStatus: (state, action: PayloadAction<FetchStatus>) => {
+      state.sendNewCommentStatus = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchComments.pending, (state) => {
@@ -86,6 +91,9 @@ export const commentsSlice = createSlice({
   },
 });
 
+export const { resetSendCommentStatus } = commentsSlice.actions;
+
 const selectCommentsState = (state: State) => state[NameSpace.Comments];
 
 export const selectComments = (state: State) => selectCommentsState(state).comments;
+export const selectSendNewCommentStatus = (state: State) => selectCommentsState(state).sendNewCommentStatus;
